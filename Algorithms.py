@@ -1,11 +1,13 @@
 from Solution import Solution
 from DataStructures import BinarySearchTree, ListNode, TreeNode
+from Strings import Strings
 
 problems = [
     Solution.addTwoNumbers.__name__,
     Solution.containsDuplicate.__name__,
     Solution.sherlockAndAnagrams.__name__,
     Solution.lowestCommonAncestor.__name__,
+    Strings.commonChild.__name__
 ]
 solutions = Solution()
 
@@ -33,5 +35,7 @@ match problem:
         for x in 4, 2, 3, 1, 7, 6:
             bst.create(x)
         result = solutions.lowestCommonAncestor(bst.root, 1, 3)
+    case Strings.commonChild.__name__:
+        result = Strings.commonChild("HARRY", "RR")
 
 print(f"The result for {problems[intInput-1]} problem is {result}")
