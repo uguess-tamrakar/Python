@@ -7,7 +7,8 @@ problems = [
     Solution.containsDuplicate.__name__,
     Solution.sherlockAndAnagrams.__name__,
     Solution.lowestCommonAncestor.__name__,
-    Strings.commonChild.__name__
+    Strings.commonChild.__name__,
+    Strings.areBalancedBrackets.__name__,
 ]
 solutions = Solution()
 
@@ -37,5 +38,9 @@ match problem:
         result = solutions.lowestCommonAncestor(bst.root, 1, 3)
     case Strings.commonChild.__name__:
         result = Strings.commonChild("HARRY", "RR")
+    case Strings.areBalancedBrackets.__name__:
+        result = Strings.areBalancedBrackets(
+            "[]][{]{(({{)[})(}[[))}{}){[{]}{})()[{}]{{]]]){{}){({(}](({[{[{)]{)}}}({[)}}([{{]]({{"
+        )
 
 print(f"The result for {problems[intInput-1]} problem is {result}")
