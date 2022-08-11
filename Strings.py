@@ -42,3 +42,23 @@ class Strings:
 
     
 
+    def areBalancedBrackets(s):
+        # balanced brackets must have even size (open-closed brackets)
+        if len(s) % 2 != 0:
+            return False
+        stack = []
+        open_bracs = ["[", "{", "("]
+        for idx, c in enumerate(s):
+            if open_bracs.__contains__(c):
+                stack.append(c)
+            else:
+                if len(stack) == 0:
+                    return False
+                lastItem = stack.pop()
+                if (
+                    (lastItem == "[" and c != "]")
+                    or (lastItem == "{" and c != "}")
+                    or (lastItem == "(" and c != ")")
+                ):
+                    return False
+        return True if len(stack) == 0 else False

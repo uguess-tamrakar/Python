@@ -19,7 +19,8 @@ problems = [
     BinaryTree.inorderTraversal.__name__,
     BinaryTree.preorderTraversal.__name__,
     BinaryTree.postorderTraversal.__name__,
-    BinaryTree.levelorderTraversal.__name__
+    BinaryTree.levelorderTraversal.__name__,
+    Strings.areBalancedBrackets.__name__,
 ]
 solutions = Solution()
 
@@ -66,6 +67,10 @@ match problem:
         result = BinaryTree.postorderTraversal(TreeNode(1, None, TreeNode(2, TreeNode(3))))
     case BinaryTree.levelorderTraversal.__name__:
         result = BinaryTree.levelorderTraversal(TreeNode(3, TreeNode(9), TreeNode(20, TreeNode(15), TreeNode(7))))
+    case Strings.areBalancedBrackets.__name__:
+        result = Strings.areBalancedBrackets(
+            "[]][{]{(({{)[})(}[[))}{}){[{]}{})()[{}]{{]]]){{}){({(}](({[{[{)]{)}}}({[)}}([{{]]({{"
+        )
 
 print(f"The result for {problems[intInput-1]} problem is {result}")
 end_time = time.process_time()
