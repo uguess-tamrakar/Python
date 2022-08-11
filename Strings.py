@@ -1,17 +1,44 @@
-import enum
-
 
 class Strings:
+
+    def isPalindrome(s):
+        n = len(s)
+        if n == 1:
+            return True
+        mid = n // 2
+        left = mid - 1
+        right = mid if n % 2 == 0 else mid + 1
+        
+        while left >= 0 and right < n:
+            if s[left] != s[right]:
+                return False
+            left -= 1
+            right += 1
+        return True
+
     def commonChild(s1, s2):
-        dp = [0] * (len(s2) + 1)
-        for x in range(1, len(s1) + 1):
-            prev = 0
-            for y in range(1, len(s2) + 1):
-                temp = dp[y]
-                if (s1[x-1] == s2[y-1]):
-                    dp[y] = prev + 1
+        # memo = [0] * len(s2)
+        # for x in range(len(s1)):
+        #     previous = 0
+        #     for y in range(len(s2)):
+        #         temp = memo[y]
+        #         if (s1[x] == s2[y]):
+        #             memo[y] = previous + 1
+        #         else:
+        #             memo[y] = max(memo[y], memo[y-1] if y > 0 else 0)
+        #         previous = temp
+        # return memo[len(s2) - 1]
+        n, m = len(s1), len(s2)
+        lcs = [[0] * (m + 1) for _ in range(n + 1)]
+
+        for i, c1 in enumerate(s1):
+            for j, c2 in enumerate(s2):
+                if c1 == c2:
+                    lcs[i][j] = lcs[i - 1][j - 1] + 1
                 else:
-                    dp[y] = max(dp[y], dp[y-1])
-                prev = temp
-        return dp[len(s2)]
+                    lcs[i][j] = max(lcs[i][j - 1], lcs[i - 1][j])
+
+        return lcs[n - 1][m - 1]
+
+    
 

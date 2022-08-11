@@ -9,3 +9,6 @@ def is_leap(year):
             leap = True
 
     return leap
+
+def nInterestingPolygon(n):
+    return 2 * n * (n-1) + 1
