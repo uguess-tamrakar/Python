@@ -22,22 +22,23 @@ problems = [
     BinaryTree.postorderTraversal.__name__,
     BinaryTree.levelorderTraversal.__name__,
     Strings.areBalancedBrackets.__name__,
-    Graph.graphDepthFirstSearch.__name__,
+    Graph.graphDepthFirstSearchIterative.__name__,
     Graph.graphBreadthFirstSearch.__name__,
     Graph.graphShortestPath.__name__,
+    Graph.graphDepthFirstSearchRecursive.__name__
 ]
 solutions = Solution()
 
 print()
 for index, problem in enumerate(problems):
-    print(f"{index}. {problem}")
+    print(f"{index + 1}. {problem}")
 print()
 
 input = input("Pick a problem from above: ")
 
 result = ""
 intInput = int(input)
-problem = problems[intInput]
+problem = problems[intInput - 1]
 start_time = time.process_time()
 match problem:
     case Solution.addTwoNumbers.__name__:
@@ -75,7 +76,7 @@ match problem:
         result = Strings.areBalancedBrackets(
             "[]][{]{(({{)[})(}[[))}{}){[{]}{})()[{}]{{]]]){{}){({(}](({[{[{)]{)}}}({[)}}([{{]]({{"
         )
-    case Graph.graphDepthFirstSearch.__name__:
+    case Graph.graphDepthFirstSearchIterative.__name__:
         vertices = [0, 1, 2, 3, 4]
         edges = [
             (0, 1),
@@ -84,7 +85,7 @@ match problem:
             (2, 4),
         ]
         graph = Graph(vertices, edges)
-        result = graph.graphDepthFirstSearch(0)
+        result = graph.graphDepthFirstSearchIterative(0)
     case Graph.graphBreadthFirstSearch.__name__:
         vertices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         edges = [
@@ -119,7 +120,17 @@ match problem:
         ]
         graph = Graph(vertices, edges)
         result = graph.graphShortestPath(2, 3)
+    case Graph.graphDepthFirstSearchRecursive.__name__:
+        vertices = [0, 1, 2, 3, 4]
+        edges = [
+            (0, 1),
+            (0, 2),
+            (0, 3),
+            (2, 4),
+        ]
+        graph = Graph(vertices, edges)
+        result = graph.graphDepthFirstSearchRecursive(0)
 
-print(f"The result for {problems[intInput-1]} problem is {result}")
+print(f"The result for {problem} problem is {result}")
 end_time = time.process_time()
 print(f"Execution time: {end_time - start_time} seconds")

@@ -64,7 +64,7 @@ class Graph:
         shortest_path.reverse()
         return shortest_path
 
-    def graphDepthFirstSearch(self, start):
+    def graphDepthFirstSearchIterative(self, start):
         visited = []
         stack = []
         if start not in self.adjacency_list.keys():
@@ -76,8 +76,22 @@ class Graph:
             vertex = stack.pop()
             if vertex not in visited:
                 visited.append(vertex)
-            for adjacent in self.adjacency_list[vertex]:
-                if adjacent not in visited:
-                    stack.append(adjacent)
+                adjacents = self.adjacency_list[vertex]
+                adjacents.reverse() # to traverse it left to right
+                for adjacent in adjacents:
+                    if adjacent not in visited:
+                        stack.append(adjacent)
 
         return visited
+
+    def graphDepthFirstSearchRecursive(self, start):
+        visited = []
+        self.__dfsRecursive(visited, start)
+        return visited
+    
+    def __dfsRecursive(self, visited, vertex):
+        if vertex not in visited:
+            visited.append(vertex)
+            for adjacent in self.adjacency_list[vertex]:
+                if adjacent not in visited:
+                    self.__dfsRecursive(visited, adjacent)
