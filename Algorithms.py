@@ -1,3 +1,4 @@
+from msilib.schema import Binary, BindImage
 from Graph import Graph
 import time
 from Arrays import Arrays
@@ -25,7 +26,9 @@ problems = [
     Graph.graphDepthFirstSearchIterative.__name__,
     Graph.graphBreadthFirstSearch.__name__,
     Graph.graphShortestPath.__name__,
-    Graph.graphDepthFirstSearchRecursive.__name__
+    Graph.graphDepthFirstSearchRecursive.__name__,
+    BinaryTree.bstMinDepth.__name__,
+    Arrays.minJumps.__name__
 ]
 solutions = Solution()
 
@@ -71,7 +74,7 @@ match problem:
     case BinaryTree.postorderTraversal.__name__:
         result = BinaryTree.postorderTraversal(TreeNode(1, None, TreeNode(2, TreeNode(3))))
     case BinaryTree.levelorderTraversal.__name__:
-        result = BinaryTree.levelorderTraversal(TreeNode(3, TreeNode(9), TreeNode(20, TreeNode(15), TreeNode(7))))
+        result = BinaryTree.levelorderTraversal(TreeNode(1, TreeNode(3), TreeNode(20, TreeNode(15), TreeNode(7))))
     case Strings.areBalancedBrackets.__name__:
         result = Strings.areBalancedBrackets(
             "[]][{]{(({{)[})(}[[))}{}){[{]}{})()[{}]{{]]]){{}){({(}](({[{[{)]{)}}}({[)}}([{{]]({{"
@@ -130,6 +133,10 @@ match problem:
         ]
         graph = Graph(vertices, edges)
         result = graph.graphDepthFirstSearchRecursive(0)
+    case BinaryTree.bstMinDepth.__name__:
+        result = BinaryTree.bstMinDepth(TreeNode(1, TreeNode(3, TreeNode(4)), TreeNode(2)))
+    case Arrays.minJumps.__name__:
+        result = Arrays.minJumps([2,3,1,1,2,4,2,0,1,1], 10)
 
 print(f"The result for {problem} problem is {result}")
 end_time = time.process_time()
