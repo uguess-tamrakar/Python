@@ -1,5 +1,16 @@
 
+from typing import List
+
 class Strings:
+
+    def groupAnagrams(strs) -> List[List[str]]: 
+        anagrams = {}
+        for str in strs:
+            sorted_str = ''.join(sorted(str))
+            if sorted_str not in anagrams:
+                anagrams[sorted_str] = []
+            anagrams[sorted_str].append(str)
+        return list(anagrams.values())
 
     def isPalindrome(s):
         n = len(s)

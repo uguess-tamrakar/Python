@@ -3,6 +3,14 @@ from DataStructures import ListNode
 
 
 class Solution:
+    def solution(n):
+        n = int(n)
+        if n <= 2:
+            return n - 1
+        if n % 2 == 0:
+            return Solution.solution(n // 2) + 1
+        return min(Solution.solution(n + 1), Solution.solution(n - 1)) + 1
+
     def lowestCommonAncestor(self, root, v1, v2):
         if root is None:
             return -1
@@ -53,3 +61,47 @@ class Solution:
             l2 = l2.next if l2 else None
 
         return result.next
+
+    def decimalToBase(dn, db):
+        """Convert Desired No(dn) a positive number to desire Base(db)"""
+        digits = []
+        while dn > 0:
+            digits.insert(0, str(dn % db))
+            dn = dn // db
+        return "".join(digits)
+
+    def baseToDecimal(bn, cb):
+        """Convert Base No(bn) a positive number to decimal wrt current Base(cb)"""
+        n = 0
+        for d in str(bn):
+            n = cb * n + int(d)
+        return n
+
+    def getSubtract(x, y, b):
+        if b == 10:
+            return int(x) - int(y)
+
+        dx = Solution.baseToDecimal(x, b)
+        dy = Solution.baseToDecimal(y, b)
+        dz = dx - dy
+        return Solution.decimalToBase(dz, b)
+
+    def minionAlgorithm(n, b):
+        arr = []
+        while True:
+            x = "".join(sorted(str(n), reverse=True))
+            y = "".join(sorted(str(n)))
+            z = Solution.getSubtract(x, y, b)
+
+            zl = len(str(z))
+            xl = len(str(x))
+
+            if (zl) != xl:
+                z = z * pow(10, (xl - zl))
+
+            for index, item in enumerate(arr):
+                if item == z:
+                    return index + 1
+                    break
+            arr = [z] + arr
+            n = z

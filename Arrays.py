@@ -1,8 +1,39 @@
 from math import inf
 import sys
-
+from typing import List
 
 class Arrays:
+    def canJump(nums: List[int]) -> bool:
+        n = len(nums)
+        if n == 1:
+            return True
+        lastIdx = n - 1
+        for idx in range(lastIdx - 1, -1, -1):
+            if lastIdx <= idx + nums[idx]: 
+                lastIdx = idx
+        return lastIdx <= 0
+
+
+    def peakElement(self, arr, n):
+        if n == 0:
+            return 0
+        if n == 1:
+            return 1
+        for idx in range(arr):
+            if (
+                (idx == 0 and arr[idx] >= arr[idx + 1])
+                or (idx == n - 1 and arr[idx] >= arr[idx - 1])
+                or (
+                    idx > 0
+                    and idx < n - 1
+                    and arr[idx - 1] <= arr[idx]
+                    and arr[idx] >= arr[idx + 1]
+                )
+            ):
+                return 1
+
+        return 0
+
     def minJumps(arr, n):
         if n <= 1:
             return 0
@@ -32,6 +63,21 @@ class Arrays:
         for i in range(1, len(inputArray)):
             current = inputArray[i] + inputArray[i - 1]
             maxProduct = max(maxProduct, current)
+        return maxProduct
+    
+    def maxProductSubarray(nums):
+        n = len(nums)
+        prefix = 1
+        suffix = 1
+        maxProduct = -inf
+        for i in range(n):
+            if prefix == 0:
+                prefix = 1
+            if suffix == 0:
+                suffix = 1
+            prefix *= nums[i]
+            suffix *= nums[n - i - 1]
+            maxProduct = max(maxProduct, max(prefix, suffix))
         return maxProduct
 
     def almostIncreasingSequence(sequence):

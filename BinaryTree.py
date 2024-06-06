@@ -4,12 +4,11 @@ from typing import List, Optional
 
 from DataStructures import TreeNode
 
-class BinaryTree:
 
+class BinaryTree:
     def inorderTraversal(root: Optional[TreeNode]):
         result = []
         binary_tree = BinaryTree()
-        binary_tree.__
         binary_tree.__traverseRecursive(root, result, "inorder")
         return result
 
